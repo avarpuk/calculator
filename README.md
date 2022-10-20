@@ -1,1 +1,1 @@
-# calculator
+## Calculator for Kata Academy
