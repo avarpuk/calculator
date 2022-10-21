@@ -18,7 +18,8 @@ public class Main {
                 System.out.println(ERROR + "Ошибка | " + TEXT + "Выражение имеет недопустимый оператор");
                 return;
             } else if(element[0].matches("[0-9]+") && element[2].matches("[0-9]+") || element[0].matches("[IVXLCDM]+") && element[2].matches("[IVXLCDM]+")){
-                calc(input);
+                String output = calc(input);
+                System.out.println(output);
             } else {
                 System.out.println(ERROR + "Ошибка | " + TEXT + "Выражение неверно");
                 return;
@@ -26,37 +27,43 @@ public class Main {
         }
     }
 
-    public static String calc(String input){
+    public static String calc(String input) {
         String[] element = input.split(" ");
-        if(element[0].matches("[0-9]+") && element[2].matches("[0-9]+")){
+        int answer = 0;
+        String output = null;
+        if (element[0].matches("[0-9]+") && element[2].matches("[0-9]+")) {
             int a = Integer.parseInt(element[0]);
             int b = Integer.parseInt(element[2]);
-            if(a < 0 || a > 10 || b < 0 || b > 10){
+            if (a < 0 || a > 10 || b < 0 || b > 10) {
                 System.out.println(ERROR + "Ошибка | " + TEXT + "Выражение неверно");
             } else {
                 switch (element[1]) {
                     case "+":
-                        int sum = a + b;
-                        System.out.println(SUCCESS + "Результат вычисления = "+ TEXT + sum);
+                        answer = a + b;
                         break;
                     case "-":
-                        int dif = a - b;
-                        System.out.println(SUCCESS + "Результат вычисления = "+ TEXT + dif);
+                        answer = a - b;
                         break;
                     case "*":
-                        int prod = a * b;
-                        System.out.println(SUCCESS + "Результат вычисления = "+ TEXT + prod);
+                        answer = a * b;
                         break;
                     case "/":
-                        int quot = a / b;
-                        System.out.println(SUCCESS + "Результат вычисления = "+ TEXT +  quot);
+                        answer = a / b;
                         break;
                 }
             }
+            output = String.valueOf(answer);
         } else {
-            // РИМСКИЕ ЧИСЛА
+            int a = translateToArabic(element[0]);
+            int b = translateToArabic(element[2]);
         }
-        return input;
+        return output;
+    }
+
+    public static int translateToArabic(String input){
+
+
+        return Integer.parseInt(input);
     }
 }
 
